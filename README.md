@@ -14,3 +14,9 @@
 # Mission canvas:
 
 [AI_Project_Canvas_Editable.pdf](https://github.com/katerinagurina/otus_fraud_system/files/14731142/AI_Project_Canvas_Editable.pdf)
+
+# Базовые блоки инфраструктуры:
+- РСУБД, так как важно иметь хорошую безопасность данных
+- kafka для проведения очереди транзакций
+- cubernetis для оркестрации сервисов ml
+- ??
