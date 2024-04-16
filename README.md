@@ -27,6 +27,10 @@
 - Minio для реестра артефактов
 
 # Точка доступа к данным
-s3://mlops-fraud-data-bucket
+s3://bucket-mlops-fraud-system
+
+# Содержимое HDFS директории
+
+![2024-04-16_23-07-59](https://github.com/katerinagurina/otus_fraud_system/assets/14828022/77ee71a7-caa2-4ce3-8202-2ec67894acd4)
 
 
