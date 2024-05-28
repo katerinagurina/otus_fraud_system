@@ -29,8 +29,15 @@
 # Точка доступа к данным
 s3://bucket-mlops-fraud-system
 
+
 # Содержимое HDFS директории
 
 ![2024-04-16_23-07-59](https://github.com/katerinagurina/otus_fraud_system/assets/14828022/77ee71a7-caa2-4ce3-8202-2ec67894acd4)
+
+# Запуск DAG по расписанию
+![2024-05-28_11-23-55](https://github.com/katerinagurina/otus_fraud_system/assets/14828022/e315fab8-d059-47c6-90eb-5005199ddaa8)
+
+
+
 
 
