@@ -61,7 +61,7 @@ if not session.query(Connection).filter(Connection.conn_id == ycSA_connection.co
 # Настройки DAG
 with DAG(
         dag_id = 'DATA_PREPROCESS_2',
-        schedule_interval='@daily',
+        schedule_interval='@once',
         start_date=datetime(year = 2024,month = 5,day = 25),
         #schedule_interval = timedelta(minutes=16),
         catchup=False
