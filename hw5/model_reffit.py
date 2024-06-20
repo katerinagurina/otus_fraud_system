@@ -128,4 +128,6 @@ precision_test, recall_test = calculate_metric_values(predictions_test)
 mlflow.log_metric("Precision on test", precision_test)
 mlflow.log_metric("Recall on test", recall_test)
 
+mlflow.spark.save_model(model, "model_for_fraud_detection.mlmodel")
+
 
