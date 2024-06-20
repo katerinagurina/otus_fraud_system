@@ -46,8 +46,8 @@ FILES_FOR_TRAINING = ['2019-08-22','2019-09-21', '2019-10-21']
 FILES_FOR_TESTING = ['2019-11-20']
 
 SOURCE_BUCKET = 'bucket-mlops-fraud-system/cleaned_data/' 
-S3_KEY_ID = 'YCAJERcdEYXXGtibDA_bKmuCN'
-S3_SECRET_KEY = 'YCOhTcO5kxCoBY950-36WcWo6uzy8tBJ4S1gxEsP'
+S3_KEY_ID = ''
+S3_SECRET_KEY = ''
 TRACKING_SERVER_HOST = '178.154.205.20'
 
 def get_pipeline():
