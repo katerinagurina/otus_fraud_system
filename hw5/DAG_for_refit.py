@@ -60,10 +60,10 @@ if not session.query(Connection).filter(Connection.conn_id == ycSA_connection.co
 
 # Настройки DAG
 with DAG(
-        dag_id = 'DATA_PREPROCESS_3',
-        schedule_interval='@once',
-        start_date=datetime(year = 2024,month = 6,day = 20),
-        #schedule_interval = timedelta(minutes=16),
+        dag_id = 'DATA_PREPROCESS_4',
+        #schedule_interval='@once',
+        start_date=datetime(year = 2024,month = 6,day = 21, hour = 23, minutes = 30),
+        schedule_interval = timedelta(minutes=30),
         catchup=False
 ) as ingest_dag:
 
@@ -80,18 +80,19 @@ with DAG(
         cluster_image_version='2.0.43',
         masternode_resource_preset='s3-c2-m8',
         masternode_disk_type='network-ssd',
-        masternode_disk_size=64,
+        masternode_disk_size=80,
         datanode_resource_preset='s3-c4-m16',
         datanode_disk_type='network-ssd',
         datanode_disk_size=128,
-        datanode_count=2,
+        datanode_count=4,
         computenode_disk_type='network-ssd',
         computenode_resource_preset ='s3-c4-m16',
         computenode_disk_size=128,
-        computenode_count=2,
+        computenode_count=4,
         services=['YARN', 'SPARK', 'HDFS'],          
         connection_id=ycSA_connection.conn_id,
         dag=ingest_dag,
+        # enable_ui_proxy = True
         
     )
 
@@ -114,7 +115,7 @@ with DAG(
         connection_id = ycSA_connection.conn_id,
         dag=ingest_dag,
         properties = {'spark.submit.deployMode': 'cluster',
-                    'spark.yarn.dist.archives': f's3a://{YC_SOURCE_BUCKET}/pyspark_venv.tar.gz#venv1',
+                    'spark.yarn.dist.archives': f's3a://{YC_SOURCE_BUCKET}/pyspark_with_datetime.tar.gz#venv1',
                     'spark.yarn.appMasterEnv.PYSPARK_PYTHON': './venv1/bin/python',
                     'spark.yarn.appMasterEnv.PYSPARK_DRIVER_PYTHON': './venv1/bin/python'}
     )  
