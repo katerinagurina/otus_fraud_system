@@ -34,8 +34,20 @@ s3://bucket-mlops-fraud-system
 
 ![2024-04-16_23-07-59](https://github.com/katerinagurina/otus_fraud_system/assets/14828022/77ee71a7-caa2-4ce3-8202-2ec67894acd4)
 
-# Запуск DAG по расписанию
+# Запуск DAG для очистки данных по расписанию
 ![2024-05-28_11-23-55](https://github.com/katerinagurina/otus_fraud_system/assets/14828022/e315fab8-d059-47c6-90eb-5005199ddaa8)
+
+# Запуск DAG для переобучения модели по расписанию
+![aiflow](https://github.com/katerinagurina/otus_fraud_system/assets/14828022/9754e676-1b7d-4428-915f-e318d0e902fd)
+Первые три неудачных раза были связаны с ограничением на количество создваемых виртуальных машин в облаке
+
+# Экспереметы в MLFlow
+![mlflow](https://github.com/katerinagurina/otus_fraud_system/assets/14828022/aa66e74d-8a35-49f9-84f6-f527859144c0)
+![metrics](https://github.com/katerinagurina/otus_fraud_system/assets/14828022/64f87f5e-38d8-44f2-8d52-2b459fe5df7e)
+
+
+
+
 
 
 
