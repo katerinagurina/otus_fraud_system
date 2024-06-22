@@ -48,7 +48,7 @@ SELECTED_FEATURES = [#'tranaction_id',
 FILES_FOR_TRAINING = ['2019-08-22', '2019-09-21','2019-10-21']
 FILES_FOR_TESTING = ['2019-11-20']
 
-SOURCE_BUCKET = 'bucket-mlops-fraud-system/cleaned_data/' 
+SOURCE_BUCKET = 'bucket-mlops-fraud-system/' 
 S3_KEY_ID = 'YCAJERcdEYXXGtibDA_bKmuCN'
 S3_SECRET_KEY = 'YCOhTcO5kxCoBY950-36WcWo6uzy8tBJ4S1gxEsP'
 TRACKING_SERVER_HOST = '62.84.112.9'
@@ -87,7 +87,7 @@ def calculate_metric_values(predictions):
 
 def make_unioned_df(file_names):
     for i, fname in enumerate(file_names):
-        data = spark.read.load(f's3a://{SOURCE_BUCKET}/clean_{fname}.parquet')
+        data = spark.read.load(f's3a://{SOURCE_BUCKET}/cleaned_data/clean_{fname}.parquet')
         data = data.withColumn("classWeights", when(data.tx_fraud==1, 5).otherwise(1))
         if i == 0:
             unioned_df = data
@@ -134,13 +134,13 @@ with mlflow.start_run(run_name=run_name, experiment_id=experiment_id):
     test_unioned_df = make_unioned_df(FILES_FOR_TESTING)
     predictions_test = model.transform(test_unioned_df)
     precision_test, recall_test = calculate_metric_values(predictions_test)
-    # print(precision_test, recall_test)
 
 
     mlflow.log_metric("Precision on test", precision_test)
     mlflow.log_metric("Recall on test", recall_test)
 
-    mlflow.spark.save_model(model, "model_for_fraud_detection.mlmodel")
+    mlflow.spark.save_model(model, 'fraud_detection_model.mlmodel')
+    #mlflow.spark.log_model(model, 'fraud_detection_model.mlmodel')
 
 spark.stop()
 

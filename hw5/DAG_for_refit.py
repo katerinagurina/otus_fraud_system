@@ -62,8 +62,8 @@ if not session.query(Connection).filter(Connection.conn_id == ycSA_connection.co
 with DAG(
         dag_id = 'DATA_PREPROCESS_4',
         #schedule_interval='@once',
-        start_date=datetime(year = 2024,month = 6,day = 21, hour = 23, minutes = 30),
-        schedule_interval = timedelta(minutes=30),
+        start_date=datetime(year = 2024,month = 6,day = 21, hour = 20, minute = 45),
+        schedule_interval = timedelta(minutes=300),
         catchup=False
 ) as ingest_dag:
 
