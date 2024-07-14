@@ -8,6 +8,7 @@ from pyspark.sql import SparkSession
 from pyspark.ml.feature import VectorAssembler, MinMaxScaler
 from pyspark.ml.classification import GBTClassifier
 from pyspark.mllib.evaluation import MulticlassMetrics
+from pyspark.ml.evaluation import BinaryClassificationEvaluator
 from pyspark.ml import Pipeline
 
 from datetime import datetime
@@ -48,10 +49,10 @@ SELECTED_FEATURES = [#'tranaction_id',
 FILES_FOR_TRAINING = ['2019-08-22', '2019-09-21','2019-10-21']
 FILES_FOR_TESTING = ['2019-11-20']
 
-SOURCE_BUCKET = 'bucket-mlops-fraud-system/cleaned_data/' 
-S3_KEY_ID = ''
-S3_SECRET_KEY = ''
-TRACKING_SERVER_HOST = ''
+SOURCE_BUCKET = 'bucket-mlops-fraud-system/' 
+S3_KEY_ID = 'YCAJERcdEYXXGtibDA_bKmuCN'
+S3_SECRET_KEY = 'YCOhTcO5kxCoBY950-36WcWo6uzy8tBJ4S1gxEsP'
+TRACKING_SERVER_HOST = '62.84.126.144'
 
 def get_pipeline():
     numericAssembler = VectorAssembler()\
@@ -139,8 +140,8 @@ with mlflow.start_run(run_name=run_name, experiment_id=experiment_id):
     mlflow.log_metric("Precision on test", precision_test)
     mlflow.log_metric("Recall on test", recall_test)
 
-    mlflow.spark.save_model(model, 'fraud_detection_model.mlmodel')
-    #mlflow.spark.log_model(model, 'fraud_detection_model.mlmodel')
+    #mlflow.spark.save_model(model, 'fraud_detection_model.mlmodel')
+    mlflow.spark.log_model(model, 'fraud_detection_model.mlmodel')
 
 spark.stop()
 

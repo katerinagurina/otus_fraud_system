@@ -8,7 +8,16 @@ class DataFilter():
         pass
 
     def transform(self, df):
-        df = df.withColumn("tx_datetime", to_timestamp("tx_datetime"))
+
+        df = df.withColumn('tranaction_id',col('tranaction_id').cast('long'))\
+                .withColumn('customer_id',col('customer_id').cast('int'))\
+                .withColumn('terminal_id',col('terminal_id').cast('int'))\
+                .withColumn('tx_amount',col('tx_amount').cast('double'))\
+                .withColumn('tx_time_seconds',col('tx_time_seconds').cast('long'))\
+                .withColumn('tx_time_days',col('tx_time_days').cast('long'))\
+                .withColumn("tx_datetime", to_timestamp("tx_datetime"))
+
+
         df = self.__validate_null_values__(df)
         df = self.__validate_duplicates__(df)
         df = self.__filter_over_range__(df)
