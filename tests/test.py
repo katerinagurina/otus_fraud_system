@@ -1,5 +1,5 @@
 from fastapi.testclient import TestClient
-from model_forecast import app, load_model
+from ml_block_otus_fraud.model_forecast import app, load_model
 
 load_model()
 client = TestClient(app)
