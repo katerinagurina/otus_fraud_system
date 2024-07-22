@@ -7,7 +7,7 @@ from pyspark.sql.types import *
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import col
 
-import transformers
+from ml.transformers import DataFilter
 import mlflow
 import logging
 
@@ -23,10 +23,10 @@ with open(config_path, "r") as file:
 logging.basicConfig(level=logging.INFO, format="%(asctime)-15s %(message)s")
 logger = logging.getLogger()
 
-
+logger.info(config)
 
 class ModelInference():
-    def __init__(self, model_name = config["MODEL_NAME"]):
+    def __init__(self):
         spark = SparkSession.builder \
                         .appName("model_inference") \
                         .getOrCreate()
@@ -35,9 +35,9 @@ class ModelInference():
         os.environ["AWS_SECRET_ACCESS_KEY"] = config["S3_SECRET_KEY"]
         os.environ["MLFLOW_S3_ENDPOINT_URL"] = "https://storage.yandexcloud.net"
         
-        self.model = self.load_model(model_name)
+        self.model = self.load_model(config["MODEL_NAME"])
         self.spark = spark
-        self.data_filter = transformers.DataFilter()
+        self.data_filter = DataFilter()
         
     def load_model(self, model_name):
         self.model_name = model_name

@@ -2,9 +2,9 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import Optional
-
-from ml_block_otus_fraud.model_forecast import ModelInference
-
+import sys
+sys.path.append('/otus_fraud_system/ml/')
+from ml.model_forecast import ModelInference
 
 
 class ModelHandler:

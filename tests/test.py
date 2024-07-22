@@ -1,5 +1,11 @@
 from fastapi.testclient import TestClient
-from ml_block_otus_fraud.model_forecast import app, load_model
+
+import sys
+ 
+# setting path
+sys.path.append('../otus_fraud_system/app/')
+
+from app import app,load_model
 
 load_model()
 client = TestClient(app)
@@ -19,3 +25,6 @@ def test_predict():
                                 'prediction': {'0': 0.0},
                                 'probability': {'0': '[0.7829632771264643,0.2170367228735357]'}}
 
+if __name__ == "__main__":
+    test_healthcheck()
+    test_predict()
