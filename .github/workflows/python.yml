@@ -16,13 +16,20 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.8'
+
+      - name: Install Java
+        run: |
+          sudo apt-get update && \
+          sudo apt-get install -y curl \
+          wget \
+          openjdk-8-jdk 
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install findspark pyspark mlflow boto3 fastapi pydantic pandas numpy uvicorn pytest
-          pip install -U -e .
+          pip install findspark pyspark mlflow boto3 fastapi pydantic pandas numpy uvicorn pytest setuptools
+      
       - name: Integration tests with pytest
         run: |
-          cd tests/
-          pytest test.py
+          pytest tests/test.py
     

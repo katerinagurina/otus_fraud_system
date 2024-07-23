@@ -3,8 +3,8 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from typing import Optional
 import sys
-sys.path.append('/otus_fraud_system/ml/')
-from ml.model_forecast import ModelInference
+sys.path.append('../otus_fraud_system/ml/')
+from model_forecast import ModelInference
 
 
 class ModelHandler:
@@ -33,7 +33,7 @@ def load_model():
 
 @app.get("/")
 def read_healthcheck():
-    return {"status": "healthcheck done"}
+    return {"status": "healthcheck"}
 
 @app.post("/predict")
 def predict(msg:Transaction):
