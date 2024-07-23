@@ -19,7 +19,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install findspark pyspark mlflow boto3 fastapi pydantic pandas numpy uvicorn
+          pip install findspark pyspark mlflow boto3 fastapi pydantic pandas numpy uvicorn pytest
           pip install -U -e .
       - name: Integration tests with pytest
         run: |
