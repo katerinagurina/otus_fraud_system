@@ -20,5 +20,5 @@ RUN pip install findspark pyspark mlflow boto3 fastapi pydantic pandas numpy uvi
 RUN pip install -U -e .
 
 # Run the application
-CMD ["python3", "-m", "uvicorn", "app.app:app", "--host", "0.0.0.0", "--port", "80"]
+CMD ["python3", "-m", "uvicorn", "app.app:app", "--port", "80"]
 
