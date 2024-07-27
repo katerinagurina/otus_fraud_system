@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ml-app-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  rules:
+   - host: test.ai 
+     http:
+        paths:
+        - pathType: Exact
+          path: /
+          backend:
+            service:
+              name: clusterip-svc
+              port:
+                number: 80
+        - pathType: Exact
+          path: /predict
+          backend:
+            service:
+              name: clusterip-svc
+              port:
+                number: 80
