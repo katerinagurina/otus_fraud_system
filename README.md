@@ -1,55 +1,13 @@
-# Цель проекта: 
-- Разработать автоматизированную систему детектирования мошеннических транзакций, которая позволит снизить репутационные потери для банка и повысить безопасность проведения денежных онлайн-транзакций.
+Основной файл Readme.md находится в ветке main.
+Здесь представлен файл Readme.md для ДЗ№8.
 
-Система должна удовлетворять следующим критериям:
-  - Recall системы должн быть более 98%
-  - общая доля ошибок первого рода не должна быть более 5% 
-  - MVP системы должен быть разработан за 3 месяца
-  - бюджет проекта меньше 10 млн.руб.
-  - пропускная способность системы до 400 транзакций в секунду
+Тестовый кластер был развернут с помощью kind. 
+При создании кластера поставила службу для ingress согласно официальной документации kind 
+https://kind.sigs.k8s.io/docs/user/ingress/
 
+#Скриншот из консоли с работой приложения
+![console](https://github.com/user-attachments/assets/7ef8e898-baad-486b-a817-2c83e53f8c05)
 
-# Метрика модели машинного обучения:
-- Предлагается использовать метрику F1 или просто Precision/Recall метрики. Метрика F1 позволяет решать задачи классификации как раз в сильно несбалансированных выборках и более удобна в использовании.  
-
-# Mission canvas:
-
-[AI_Project_Canvas_Editable.pdf](https://github.com/katerinagurina/otus_fraud_system/files/14731142/AI_Project_Canvas_Editable.pdf)
-
-# Базовые блоки инфраструктуры:
-- РСУБД, так как важно иметь хорошую безопасность данных
-- kafka для проведения очереди транзакций
-- K8s для оркестрации сервисов ml
-- Spark для обработки данных
-- Git для хранения кода и CI/CD процессов
-- Prometheus и Grafana для мониторинга системы
-- MLFlow для управления экспериментами и реестра моделей
-- Minio для реестра артефактов и других вещей
-
-# Точка доступа к данным
-s3://bucket-mlops-fraud-system
-
-
-# Содержимое HDFS директории
-
-![2024-04-16_23-07-59](https://github.com/katerinagurina/otus_fraud_system/assets/14828022/77ee71a7-caa2-4ce3-8202-2ec67894acd4)
-
-# Запуск DAG для очистки данных по расписанию
-![2024-05-28_11-23-55](https://github.com/katerinagurina/otus_fraud_system/assets/14828022/e315fab8-d059-47c6-90eb-5005199ddaa8)
-
-# Запуск DAG для переобучения модели по расписанию
-![aiflow](https://github.com/katerinagurina/otus_fraud_system/assets/14828022/9754e676-1b7d-4428-915f-e318d0e902fd)
-Первые три неудачных раза были связаны с ограничением на количество создваемых виртуальных машин в облаке
-
-# Экспереметы в MLFlow
-![mlflow](https://github.com/katerinagurina/otus_fraud_system/assets/14828022/aa66e74d-8a35-49f9-84f6-f527859144c0)
-![metrics](https://github.com/katerinagurina/otus_fraud_system/assets/14828022/64f87f5e-38d8-44f2-8d52-2b459fe5df7e)
-
-
-
-
-
-
-
-
-
+#Скриншоты из Podman
+![podman_pods](https://github.com/user-attachments/assets/f71d742c-6125-4e2c-b5be-449e727d97e0)
+![podman_nodes](https://github.com/user-attachments/assets/cdc6a65e-5d9a-406a-882d-2d3bd8a5ffe9)
