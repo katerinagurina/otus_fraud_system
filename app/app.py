@@ -5,6 +5,8 @@ from typing import Optional
 import sys
 sys.path.append('../otus_fraud_system/ml/')
 from model_forecast import ModelInference
+from starlette_exporter import PrometheusMiddleware, handle_metrics
+
 
 
 class ModelHandler:
@@ -26,6 +28,8 @@ class Transaction(BaseModel):
 MODEL = ModelHandler()
 
 app = FastAPI()
+app.add_middleware(PrometheusMiddleware)
+app.add_route("/metrics", handle_metrics)
 
 @app.on_event("startup")
 def load_model():
