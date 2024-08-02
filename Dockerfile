@@ -16,7 +16,7 @@ COPY . .
 
 USER root
 
-RUN pip install findspark pyspark mlflow boto3 fastapi pydantic pandas numpy uvicorn
+RUN pip install findspark pyspark mlflow boto3 fastapi pydantic pandas numpy uvicorn pytest setuptools starlette-exporter httpx
 RUN pip install -U -e .
 
 # Run the application
