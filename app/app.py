@@ -35,7 +35,7 @@ app.add_route("/metrics", handle_metrics)
 def load_model():
     MODEL.model = ModelInference()
 
-@app.post("/healthcheck")
+@app.get("/healthcheck")
 def read_healthcheck():
     return {"status": "healthcheck"}
 

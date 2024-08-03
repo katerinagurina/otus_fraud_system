@@ -1,0 +1,20 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: jokemeter-svc-monitor
+  namespace: monitoring
+  labels:
+    release: prometheus
+spec:
+  namespaceSelector:
+    matchNames:
+    - default
+  selector:
+    matchLabels:
+      app: ml-app
+  jobLabel: ml-app
+  endpoints:
+  - path: /metrics
+    port: ml-app
+    scheme: http
+    interval: 5s
