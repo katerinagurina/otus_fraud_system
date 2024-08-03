@@ -11,7 +11,7 @@ load_model()
 client = TestClient(app)
 
 def test_healthcheck():
-    response = client.get("/")
+    response = client.post("/healthcheck")
     assert response.status_code == 200
     assert response.json()["status"] == "healthcheck"
 
