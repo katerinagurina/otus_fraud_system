@@ -10,7 +10,7 @@ spec:
      http:
         paths:
         - pathType: Exact
-          path: /
+          path: /healthcheck
           backend:
             service:
               name: clusterip-svc

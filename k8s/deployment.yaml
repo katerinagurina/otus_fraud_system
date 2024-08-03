@@ -25,14 +25,14 @@ spec:
         - containerPort: 80
         readinessProbe:
           httpGet:
-            path: /
+            path: /healthcheck
             port: 80
           initialDelaySeconds: 300  
           periodSeconds: 10
           failureThreshold: 2
         livenessProbe:
           httpGet:
-            path: /
+            path: /healthcheck
             port: 80
           initialDelaySeconds: 300
           failureThreshold: 2
