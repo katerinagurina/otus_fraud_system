@@ -1,13 +1,20 @@
 Основной файл Readme.md находится в ветке main.
-Здесь представлен файл Readme.md для ДЗ№8.
+Здесь представлен файл Readme.md для ДЗ№9.
 
 Тестовый кластер был развернут с помощью kind. 
-При создании кластера поставила службу для ingress согласно официальной документации kind 
-https://kind.sigs.k8s.io/docs/user/ingress/
+Далее ставила пакеты через helm:
+1) подключаем пакет helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+2) устанавливаем прометей+графана+алерт менеджер одной сборкой helm install prometheus prometheus-community/kube-prometheus-stack --create-namespace -n monitoring -f grafana-inrgess-values.yaml
+3) ставим nginx-ingress для постоянного доступа к графане helm install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --create-namespace -f nginx-ingress-values.yaml --set controller.metrics.enabled=true --set controller.metrics.serviceMonitor.enabled=true --set controller.metrics.serviceMonitor.additionalLabels.release="prometheus"
+4) для переобучения модели подключаем пакет helm repo add bitnami https://charts.bitnami.com/bitnami
+5) ставим airflow helm install airflow bitnami/airflow
+6) подключаем git репозиторий helm upgrade install airflow bitnami/airflow -f k8s/airflow-values.yaml --set scheduler.automountServiceAccountToken=true --set worker.automountServiceAccountToken=true --set rbac.create=true
+7) переменные необходимые для переобучения модели вносила руками через проброс портов в airflow kubectl port-forward svc/airflow 8080:8080
 
-# Скриншот из консоли с работой приложения
-![console](https://github.com/user-attachments/assets/7ef8e898-baad-486b-a817-2c83e53f8c05)
+Скриншот из MLFlow
 
-# Скриншоты из Podman
-![podman_pods](https://github.com/user-attachments/assets/f71d742c-6125-4e2c-b5be-449e727d97e0)
-![podman_nodes](https://github.com/user-attachments/assets/cdc6a65e-5d9a-406a-882d-2d3bd8a5ffe9)
+Скриншот из airflow
+
+Скриншот из Grafana с алертом
+
+Скриншот из телеграмм с уведомлением
