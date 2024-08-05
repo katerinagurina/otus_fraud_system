@@ -1,0 +1,8 @@
+git:
+  dags:
+    enabled: true
+    repositories:
+    - repository: "https://github.com/katerinagurina/otus_fraud_system.git"
+      branch: "develop"
+      name: ""
+      path: "dags"

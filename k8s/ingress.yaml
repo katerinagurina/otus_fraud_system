@@ -23,3 +23,11 @@ spec:
               name: clusterip-svc
               port:
                 number: 80
+        - pathType: Exact
+          path: /metrics
+          backend:
+            service:
+             name: clusterip-svc
+             port:
+                number: 80
+   
