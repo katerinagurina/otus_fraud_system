@@ -7,6 +7,15 @@ sys.path.append('../otus_fraud_system/ml/')
 from model_forecast import ModelInference
 from starlette_exporter import PrometheusMiddleware, handle_metrics
 
+# import json
+# import kafka
+# import yaml
+# from typing import Dict, NamedTuple
+# from pathlib import Path
+# # load config file
+# config_path = Path(__file__).parent / "kafka_config.yaml"
+# with open(config_path, "r") as file:
+#     config = yaml.load(file, Loader=yaml.FullLoader)
 
 
 class ModelHandler:
@@ -34,7 +43,8 @@ app.add_route("/metrics", handle_metrics)
 @app.on_event("startup")
 def load_model():
     MODEL.model = ModelInference()
-
+    #initiliaze_kafka()
+    
 @app.get("/healthcheck")
 def read_healthcheck():
     return {"status": "healthcheck"}
@@ -48,3 +58,43 @@ def predict(msg:Transaction):
         return result
     except Exception as e:
         raise HTTPException(status_code=400, detail=str(e))
+
+
+
+
+
+
+# def serialize(msg: Dict) -> bytes:
+#     return json.dumps(msg).encode("utf-8")
+
+
+# def initiliaze_kafka():
+#     consumer = kafka.KafkaConsumer(
+#     # 'test_topic',
+#     bootstrap_servers=config["DEFAULT_SERVERS"],
+#     security_protocol="SASL_SSL",
+#     sasl_mechanism="SCRAM-SHA-512",
+#     sasl_plain_username=config["USERNAME"],
+#     sasl_plain_password=config["PASSWORD"],
+#     ssl_cafile="YandexCA.crt",
+#     group_id=config["GROUP_ID"],
+#     value_deserializer=json.loads)
+
+#     consumer.subscribe(topics=[config["INPUT_TOPIC"]])
+
+#     producer_output = kafka.KafkaProducer(
+#         bootstrap_servers=config["DEFAULT_SERVERS"],
+#         security_protocol="SASL_SSL",
+#         sasl_mechanism="SCRAM-SHA-512",
+#         sasl_plain_username=config["USERNAME"],
+#         sasl_plain_password=config["PASSWORD"],
+#         #ssl_cafile="/home/gurina/local/share/ca-certificates/Yandex/YandexInternalRootCA.crt",
+#         ssl_cafile="YandexCA.crt",
+#         value_serializer=serialize)
+
+#     for msg in consumer:
+#         msg_output = predict(msg)
+#         future = producer_output.send(topic=config["OUTPUT_TOPIC"],
+#                                     key=f'{msg[5]}'.encode("ascii"),
+#                                     value=msg_output)
+#         future.get(timeout=1)
