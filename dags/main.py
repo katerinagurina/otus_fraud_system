@@ -67,9 +67,12 @@ with DAG(
         schedule_interval = timedelta(minutes=300),
         catchup=False
 ) as ingest_dag:
-    dummy_operator = DummyOperator(task_id='dummy_task', retries = 3, dag=ingest_dag)
+    dummy_operator = DummyOperator(task_id='dp-cluster-create-task', retries = 3, dag=ingest_dag)
+    dummy_operator2 = DummyOperator(task_id='dp-cluster-pyspark-task', retries = 3, dag=ingest_dag)
+    dummy_operator3 = DummyOperator(task_id='dp-cluster-pyspark-task2', retries = 3, dag=ingest_dag)
+    dummy_operator4 = DummyOperator(task_id='dp-cluster-delete-task', retries = 3, dag=ingest_dag)
 
-dummy_operator
+dummy_operator>>dummy_operator2>>dummy_operator3>>dummy_operator4
 
     # create_spark_cluster = DataprocCreateClusterOperator(
     #     task_id='dp-cluster-create-task',
