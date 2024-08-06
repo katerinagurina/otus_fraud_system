@@ -6,3 +6,38 @@ git:
       branch: "develop"
       name: ""
       path: "dags"
+
+worker:
+  automountServiceAccountToken: true
+  containerSecurityContext:
+    enabled: false
+  podSecurityContext:
+    enabled: false
+  
+
+scheduler:
+  automountServiceAccountToken: true
+  containerSecurityContext:
+    enabled: false
+  podSecurityContext:
+    enabled: false
+
+web:
+  automountServiceAccountToken: true
+  containerSecurityContext:
+    enabled: false
+  podSecurityContext:
+    enabled: false
+
+
+rbac:
+  create: true
+
+extraVolumeMounts:
+- name: requirements
+  mountPath: /bitnami/python/
+
+extraVolumes:
+- name: requirements
+  configMap:
+    name: requirements
