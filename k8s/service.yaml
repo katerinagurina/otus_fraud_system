@@ -8,8 +8,7 @@ spec:
   selector:
     app: ml-app
   ports:
-    - protocol: TCP
+    - name: ml-app 
+      protocol: TCP
       port: 80
       targetPort: 80
-
-     

@@ -1,20 +1,22 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: ml-app-svc-monitor
   namespace: monitoring
   labels:
     release: prometheus
+  name: ml-app
 spec:
+  endpoints:
+
+  - path: /metrics
+    port: ml-app
+    scheme: http
+    interval: 30s
+
+  jobLabel: ml-app
   namespaceSelector:
     matchNames:
     - default
   selector:
     matchLabels:
       app: ml-app
-  jobLabel: ml-app
-  endpoints:
-  - path: /metrics
-    port: ml-app
-    scheme: http
-    interval: 5s

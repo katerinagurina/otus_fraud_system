@@ -29,8 +29,3 @@ nodes:
   - containerPort: 30950
     hostPort: 30952
     protocol: TCP
-- role: worker
-  extraPortMappings:
-  - containerPort: 30950
-    hostPort: 30953
-    protocol: TCP

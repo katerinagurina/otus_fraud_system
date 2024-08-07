@@ -4,5 +4,5 @@ grafana:
      enabled: true
      ingressClassname: nginx
      hosts:
-      -  monitoring.test.ai
+      - monitoring.test.ai
 
